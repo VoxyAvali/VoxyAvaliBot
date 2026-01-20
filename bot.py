@@ -6,7 +6,7 @@ import json
 
 HOST = "irc.chat.twitch.tv"
 PORT = 6667
-NICK = "VoxaryBot" 
+NICK = "VoxyAvaliBot" 
 OAUTH_TOKEN = "oauth:**********************" # censoring to avoid unauthorized access to the bot´s account
 try:
     with open("settings.json", "r") as settingsfile:
@@ -86,7 +86,7 @@ def handle_command(command, username, sock):
     cmd = command.split(" ")[0].lower()
 
     if cmd == "!aboutbot":
-        return f"I'm {NICK}, a twitch utility bot programmed by Voxarys. Nice to meet you, {username}! VoHiYo"
+        return f"I'm {NICK}, a twitch utility bot programmed by VoxyAvali. Nice to meet you, {username}! VoHiYo"
 
     if cmd == "!commands":
         all_cmds = list(commands_data.keys())
@@ -135,7 +135,8 @@ def run_bot(sock):
 
             for response in lines:
                 if response.startswith("PING"):
-                    sock.send("PONG :tmi.twitch.tv\r\n".encode("utf-8"))
+                    print("responding to Ping from Twitch...")
+                    sock.send("PONG :tmi.twitch.tv\r\n".encode("utf-8")"
                     continue
 
                 if "PRIVMSG" in response:
@@ -174,10 +175,10 @@ def run_bot(sock):
                                 reply = f"PRIVMSG #{CHANNEL} :{reply_text}\r\n"
                                 sock.send(reply.encode("utf-8"))
                                 print(f"Replied to {message} from {username}")
-                        elif message.endswith("viewers PogChamp") and "just raided the channel with" in message:
+                        elif "just raided the channel with" in message:
                             raider = message.split(" ")[0]
                             print(f"{raider} just raided the channel, shoutout in progress...")
-                            sock.send(f"PRIVMSG #{CHANNEL} :/shoutout {raider}\r\n".encode("utf-8"))
+                            sock.send(f"PRIVMSG #{CHANNEL} :/shoutout @{raider}\r\n".encode("utf-8"))
                         
 
         except socket.timeout:
@@ -206,3 +207,4 @@ if __name__ == "__main__":
     else:
         print("Failed to connect to Twitch IRC. Exiting...")
         time.sleep(2)
+
