@@ -7,7 +7,7 @@ import json
 HOST = "irc.chat.twitch.tv"
 PORT = 6667
 NICK = "VoxyAvaliBot" 
-OAUTH_TOKEN = "oauth:dn5uynmvlkt21kulo53v20wff4xrkx" # censoring to avoid unauthorized access to the bot´s account
+OAUTH_TOKEN = "oauth:***" # censoring to avoid unauthorized access to the bot´s account
 try:
     with open("settings.json", "r") as settingsfile:
         settingsdata = json.load(settingsfile)
@@ -184,4 +184,5 @@ if __name__ == "__main__":
     else:
         print("Failed to connect to Twitch IRC. Exiting...")
         time.sleep(2)
+
 
