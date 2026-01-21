@@ -34,10 +34,9 @@ These commands can be used by the person using the bot, in the bot´s console wi
 
 
 # How the bot works (aka Technical Overview)
-upon running setup.exe, 3 .json files are created, those being:
+upon running setup.exe, 2 .json files are created, those being:
 - settings.json, containing the channel name and the message the bot sends to chat upon startup.
 - commands.json, containing all commands that the bot has special responses to. can be reloaded any time by sending "reloadcommands" in the bot window, wich calls the load_commands() function again.
-- moderation.json, containing moderation-related stuff.
 
 when bot.exe is launched, it reads these files and connects to the channel set in settings.json. It then sends a message, also set in settings.json, to that same chat.
 After that, the bot goes into listening mode, in which it logs all chat messages to its console. In case a message starts with a "!", it passes it along to the handle_command() function, which, as the name implies, handles the commands. It looks at the text after the "!" and responds with whatever is assigned to that command in commands.json.
